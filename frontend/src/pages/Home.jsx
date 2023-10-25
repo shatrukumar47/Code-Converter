@@ -35,7 +35,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:8080/convert",
+          "https://codeconverter-7z3j.onrender.com/convert",
           obj,
           {
             headers: {
@@ -60,7 +60,7 @@ const Home = () => {
       };
       setLoading(true);
       try {
-        const response = await axios.post("http://localhost:8080/debug", obj, {
+        const response = await axios.post("https://codeconverter-7z3j.onrender.com/debug", obj, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -83,7 +83,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:8080/qualitycheck",
+          "https://codeconverter-7z3j.onrender.com/qualitycheck",
           obj,
           {
             headers: {
