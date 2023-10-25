@@ -60,11 +60,15 @@ const Home = () => {
       };
       setLoading(true);
       try {
-        const response = await axios.post("https://codeconverter-7z3j.onrender.com/debug", obj, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.post(
+          "https://codeconverter-7z3j.onrender.com/debug",
+          obj,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         setLoading(false);
         setMessage(response?.data?.msg);
       } catch (error) {
@@ -83,7 +87,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          "https://codeconverter-7z3j.onrender.com/qualitycheck",
+          "http://localhost:8080/qualitycheck",
           obj,
           {
             headers: {
@@ -99,7 +103,6 @@ const Home = () => {
       }
     }
   };
-
 
   return (
     <Box bg={"#191259"} color={"white"}>

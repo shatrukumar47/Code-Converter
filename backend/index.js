@@ -79,7 +79,7 @@ app.post("/qualitycheck", async (req, res) => {
       model: "gpt-3.5-turbo",
       messages: [
         {
-          role: "assitant",
+          role: "system",
           content: "You are a code quality checking assistant",
         },
         {
