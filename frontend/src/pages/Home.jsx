@@ -6,7 +6,7 @@ import {
   Select,
   Stack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CodeEditor from "../components/CodeEditor";
 import Loading from "../components/Loading";
 import axios from "axios";
@@ -19,6 +19,7 @@ const Home = () => {
   const [message, setMessage] = useState(
     "# Hi there, *Output will be here...*!"
   );
+  const messageBoxRef = useRef();
 
   //handleCodeEditor
   const handleCodeChange = (newCode) => {
@@ -27,6 +28,7 @@ const Home = () => {
 
   //handleCONVERT
   const handleConvert = async () => {
+    messageBoxRef.current.focus();
     if (code && language) {
       let obj = {
         code: code,
@@ -54,6 +56,7 @@ const Home = () => {
 
   //handleDEBUG
   const handleDebug = async () => {
+    messageBoxRef.current.focus();
     if (code) {
       let obj = {
         code: code,
@@ -80,6 +83,7 @@ const Home = () => {
 
   //handleQUALITYCHECK
   const handleQualityCheck = async () => {
+    messageBoxRef.current.focus();
     if (code) {
       let obj = {
         code: code,
@@ -87,7 +91,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:8080/qualitycheck",
+          "https://codeconverter-7z3j.onrender.com/qualitycheck",
           obj,
           {
             headers: {
@@ -109,6 +113,7 @@ const Home = () => {
       <Stack
         direction={{ base: "column", md: "row", lg: "row" }}
         justifyContent={"space-around"}
+        alignItems={"center"}
         bg={"#682aa1"}
         padding={"15px"}
       >
@@ -155,14 +160,19 @@ const Home = () => {
         margin={"0px"}
         padding={"0px"}
       >
-        <HStack margin={"0px"} spacing={0} bg={"black"}>
-          <Box width={"50%"}>
+        <Stack
+          direction={{ base: "column", md: "row", lg: "row" }}
+          margin={"0px"}
+          spacing={0}
+          bg={"black"}
+        >
+          <Box width={{ base: "100%", md: "100%", lg: "50%" }}>
             <CodeEditor code={code} onChange={handleCodeChange} />
           </Box>
           <Box
             overflowY={"auto"}
             className="custom-scrollbar"
-            width={"50%"}
+            width={{ base: "100%", md: "100%", lg: "50%" }}
             height={"calc(100vh - 195px)"}
             padding={"10px"}
           >
@@ -175,10 +185,16 @@ const Home = () => {
                 <Loading />
               </Stack>
             ) : (
-              <Markdown>{message}</Markdown>
+              <Box
+                style={{ paddingLeft: "20px" }}
+                ref={messageBoxRef}
+                tabIndex={0}
+              >
+                <Markdown>{message}</Markdown>
+              </Box>
             )}
           </Box>
-        </HStack>
+        </Stack>
       </Container>
     </Box>
   );
