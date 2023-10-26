@@ -94,15 +94,33 @@ app.post("/qualitycheck", async (req, res) => {
             3. Code Documentation :
             4. Error Handling: 
             "
-            So score each criteria from out of 10 where 1 is very poor and 10 is excellent.
-            Code Consistency refers to checking for indusrty level coding style such as naming conventions, duplication, code formatting.
-            
-            Code Performance refers to where the code includes optimized algorithms or data structures.
-            
-            Code Documentation refers to checking if the code contains proper comments/documentation or not.
-            
-            Error Handling refers to check for whether the code handle errors or not.
-            
+            So score each criteria from out of 100 percent.
+
+            ****
+
+            Summary:
+            refers to the overall feedback on quality check.
+
+            Code Consistency: 
+            ***
+            refers to checking for indusrty level coding style such as naming conventions, duplication, code formatting.
+            ###
+            Code Performance:
+            ***
+            refers to where the code includes optimized algorithms or data structures.
+            ###
+            Code Documentation:
+            ***
+            refers to checking if the code contains proper comments/documentation or not.
+            ###
+            Error Handling:
+            ***
+            refers to check for whether the code handle errors or not.
+            ###
+            *Note: Provide the response in the format which I have provided with proper markdown language. Provide spaces between each criteria.*
+
+
+            ###
             Code : ${code}`,
         },
       ],
