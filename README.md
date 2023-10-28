@@ -5,7 +5,7 @@
 
 A web tool for code conversion between programming languages, debugging, and code quality checks. Simplify coding tasks and enhance your development workflow.
 
-An Individual project built in a span of 1 day.
+An Individual project built in a span of 2 day.
 ##
 
 ## Deployment Link
@@ -20,7 +20,7 @@ React  | Chakra UI  | Javascript | HTML5 | CSS3
 
 BACKEND -
 
- Node.js | Express.js | OpenAI
+ Node.js | Express.js | OpenAI | Octokit | Github API
 
 ## 📄 Pages
 
@@ -31,7 +31,9 @@ BACKEND -
 - Code Conversion to given programming languages.
 - Code Debugging
 - Code Quality Checking
+- Extract Code from Github Repo
 
 # Snap Shots 📷
 ## Landing Page
-![code converter](https://github.com/shatrukumar47/vogue-pocket-8479/assets/123942835/38444654-422f-406d-a6fb-a11af9e1689a)
+![code converter](https://github.com/shatrukumar47/Code-Converter/assets/123942835/c167de21-997f-4b26-9d84-9cc9871d793d)
+
