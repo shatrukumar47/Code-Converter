@@ -15,7 +15,7 @@ import GithubLink from "../components/GithubLink";
 import { parseGithubLink } from "../utils/utils";
 
 const Home = () => {
-  const [code, setCode] = useState("//Write your code here");
+  const [code, setCode] = useState("Write your code here");
   const [language, setLanguage] = useState("JavaScript");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(
