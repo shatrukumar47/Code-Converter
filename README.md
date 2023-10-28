@@ -35,5 +35,5 @@ BACKEND -
 
 # Snap Shots 📷
 ## Landing Page
-![code converter](https://github.com/shatrukumar47/Code-Converter/assets/123942835/c167de21-997f-4b26-9d84-9cc9871d793d)
+![code converter](https://github.com/shatrukumar47/Code-Converter/assets/123942835/03926dec-58fe-48d7-a8c0-55885dc2a045)
 
