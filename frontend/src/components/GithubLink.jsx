@@ -1,4 +1,4 @@
-import { Button, HStack, Input, Stack, useToast } from "@chakra-ui/react";
+import { Button, Input, Stack, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { isValidGithubLink } from "../utils/utils";
 import { FaGithub } from "react-icons/fa";
@@ -37,6 +37,7 @@ const GithubLink = ({ handleGithubPaste, loading }) => {
         placeholder="Enter GitHub file URL"
         value={link}
         onChange={(e) => setLink(e.target.value)}
+        isDisabled={loading}
       />
       <Button
         bg={"#010409"}
@@ -45,6 +46,7 @@ const GithubLink = ({ handleGithubPaste, loading }) => {
         leftIcon={<FaGithub />}
         onClick={handlePaste}
         width={"110px"}
+        isDisabled={loading}
       >
         Paste
       </Button>

@@ -1,26 +1,25 @@
-import MonacoEditor from "react-monaco-editor";
+import React from "react";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-dracula";
 
-const CodeEditor = ({ code, onChange }) => {
-
-
-  const options = {
-    selectOnLineNumbers: true,
-    fontSize: 18,
-    padding: { top: 10, right: 10, bottom: 10, left: 10 },
-    wordWrap: "on",
-  };
-
+function CodeEditor({ code, onChange }) {
   return (
-    <MonacoEditor
+    <AceEditor
+      setOptions={{ useWorker: false }}
+      mode="javascript"
+      theme="dracula"
+      name="code-editor"
+      fontSize={18}
+      showPrintMargin={true}
+      showGutter={true}
+      highlightActiveLine={true}
       width="100%"
       height="calc(100vh - 180px)"
-      language="javascript"
-      theme="vs-light"
       value={code}
-      options={options}
       onChange={onChange}
     />
   );
-};
+}
 
 export default CodeEditor;
