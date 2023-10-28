@@ -3,11 +3,16 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
-  const handleGithub = () => {};
+  const handleGithub = () => {
+    window.open("https://github.com/shatrukumar47/Code-Converter", "_blank");
+  };
 
   return (
     <Box padding={"10px 20px 10px 20px"} bg={"#242424"} color={"orange.500"}>
-      <Stack direction={{base:"column", md:"row", lg:"row"}} justifyContent={"space-between"}>
+      <Stack
+        direction={{ base: "column", md: "row", lg: "row" }}
+        justifyContent={"space-between"}
+      >
         <Text>@2023 Code Converter</Text>
         <HStack spacing={4}>
           <FaGithub

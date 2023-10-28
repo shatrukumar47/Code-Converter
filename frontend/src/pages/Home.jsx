@@ -11,6 +11,8 @@ import CodeEditor from "../components/CodeEditor";
 import Loading from "../components/Loading";
 import axios from "axios";
 import Markdown from "react-markdown";
+import GithubLink from "../components/GithubLink";
+import { parseGithubLink } from "../utils/utils";
 
 const Home = () => {
   const [code, setCode] = useState("//Write your code here");
@@ -108,10 +110,28 @@ const Home = () => {
     }
   };
 
+  //handleGithubPaste
+  const handleGithubPaste = async (link) => {
+    const { repositoryName, repositoryOwner, filePath } = parseGithubLink(link);
+    setLoading(true)
+    try {
+      const response = await axios.post("https://codeconverter-7z3j.onrender.com/github", {
+        repositoryName,
+        repositoryOwner,
+        filePath,
+      });
+      setLoading(false)
+      setCode(response?.data?.content)
+    } catch (error) {
+      setLoading(false)
+      console.log(error);
+    }
+  };
+
   return (
     <Box bg={"#191259"} color={"white"}>
       <Stack
-        direction={{ base: "column", md: "row", lg: "row" }}
+        direction={{ base: "column", md: "column", lg: "row" }}
         justifyContent={"space-around"}
         alignItems={"center"}
         bg={"#682aa1"}
@@ -140,6 +160,9 @@ const Home = () => {
             CONVERT
           </Button>
         </HStack>
+        <Box>
+          <GithubLink handleGithubPaste={handleGithubPaste} loading={loading} />
+        </Box>
         <HStack justifyContent={"center"}>
           <Button colorScheme="red" onClick={handleDebug} isDisabled={loading}>
             DEBUG
