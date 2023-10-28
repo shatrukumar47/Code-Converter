@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const OpenAI = require("openai");
+const { Octokit } = require("@octokit/core");
+const fetch = require("node-fetch");
 require("dotenv").config();
 
 app.use(express.json());
@@ -15,6 +17,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+//code conversion
 app.post("/convert", async (req, res) => {
   let { code, language } = req.body;
   try {
@@ -44,6 +47,7 @@ app.post("/convert", async (req, res) => {
   }
 });
 
+//debugging
 app.post("/debug", async (req, res) => {
   let { code } = req.body;
   try {
@@ -72,6 +76,7 @@ app.post("/debug", async (req, res) => {
   }
 });
 
+//qualitycheck
 app.post("/qualitycheck", async (req, res) => {
   let { code } = req.body;
   try {
@@ -134,6 +139,39 @@ app.post("/qualitycheck", async (req, res) => {
     res.status(200).send({ msg: response.choices[0].message.content });
   } catch (error) {
     res.status(400).send({ error: error });
+  }
+});
+
+//github
+const octokit = new Octokit({
+  auth: process.env.GITHUB_ACCESS_TOKEN,
+  request: {
+    fetch: fetch,
+  },
+});
+
+app.post("/github", async (req, res) => {
+  const { repositoryOwner, repositoryName, filePath } = req.body;
+  try {
+    const response = await octokit.request(
+      "GET /repos/{owner}/{repo}/contents/{path}",
+      {
+        owner: repositoryOwner,
+        repo: repositoryName,
+        path: filePath,
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      }
+    );
+
+    const codeContent = Buffer.from(response.data.content, "base64").toString(
+      "utf-8"
+    );
+    res.status(200).send({ content: codeContent });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error: "GitHub API Error: " + error.message });
   }
 });
 
