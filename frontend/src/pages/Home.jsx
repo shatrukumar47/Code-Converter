@@ -113,17 +113,20 @@ const Home = () => {
   //handleGithubPaste
   const handleGithubPaste = async (link) => {
     const { repositoryName, repositoryOwner, filePath } = parseGithubLink(link);
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.post("https://codeconverter-7z3j.onrender.com/github", {
-        repositoryName,
-        repositoryOwner,
-        filePath,
-      });
-      setLoading(false)
-      setCode(response?.data?.content)
+      const response = await axios.post(
+        "https://codeconverter-7z3j.onrender.com/github",
+        {
+          repositoryName,
+          repositoryOwner,
+          filePath,
+        }
+      );
+      setLoading(false);
+      setCode(response?.data?.content);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error);
     }
   };
